@@ -9,9 +9,14 @@ import SwiftUI
 
 @main
 struct StockTrackerApp: App {
+    
+    let container = AppContainer()
+
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            StockListView(
+                viewModel: container.makeStockListViewModel()
+                )
         }
     }
 }
