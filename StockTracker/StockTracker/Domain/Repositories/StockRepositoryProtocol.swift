@@ -9,4 +9,6 @@ protocol StockRepositoryProtocol {
     func startPriceFeed()
     func stopPriceFeed()
     func observeStocks() -> AsyncStream<[Stock]>
+    func observeConnection() -> AsyncStream<ConnectionState>
+
 }

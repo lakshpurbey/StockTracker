@@ -40,6 +40,10 @@ final class StockRepository: StockRepositoryProtocol {
         }
     }
     
+    func observeConnection() -> AsyncStream<ConnectionState> {
+        socket.connectionState
+    }
+    
     private func sendRandomUpdates() {
         Task {
             while true {

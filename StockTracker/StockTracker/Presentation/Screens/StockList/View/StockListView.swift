@@ -14,7 +14,10 @@ struct StockListView: View {
     var body: some View {
         NavigationView {
             List(viewModel.stocks) { stock in
-                NavigationLink(destination: EmptyView()) {
+                NavigationLink(destination: StockDetailView(
+                    symbol: stock.symbol,
+                    repository: viewModel.repository
+                )) {
                     StockRowView(stock: stock)
                 }
             }
