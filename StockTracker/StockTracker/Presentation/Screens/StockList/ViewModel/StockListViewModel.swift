@@ -15,9 +15,21 @@ final class StockListViewModel: ObservableObject {
     @Published var isConnected: Bool = false
     
     let repository: StockRepositoryProtocol
+    private var observeTask: Task<Void, Never>?
+
     
     init(repository: StockRepositoryProtocol) {
         self.repository = repository
+        
+        // Start immediately
+        isConnected = true
+        repository.startPriceFeed()
+
+        observeTask = Task {
+            for await stocks in repository.observeStocks() {
+                self.stocks = stocks
+            }
+        }
     }
     
     func start() {

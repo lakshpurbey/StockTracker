@@ -39,8 +39,6 @@ struct StockDetailView: View {
             }
             .padding()
         }
-        .navigationTitle(viewModel.stock?.symbol ?? "")
-        .navigationBarTitleDisplayMode(.inline)
     }
         
 }

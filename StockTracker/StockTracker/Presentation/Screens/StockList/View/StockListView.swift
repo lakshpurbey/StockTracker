@@ -30,7 +30,7 @@ struct StockListView: View {
                         HStack(spacing: 8) {
                             
                             Circle()
-                                .fill(viewModel.isConnected ? Color.green : Color.gray)
+                                .fill(viewModel.isConnected ? Color.gray : Color.green)
                                 .frame(width: 10, height: 10)
                             
                             Text(viewModel.isConnected ? "Stop" : "Start")
@@ -46,6 +46,7 @@ struct StockListView: View {
                     }
                     .animation(.easeInOut, value: viewModel.isConnected)
                 }
-            }        }
+            }
+        }
     }
 }
