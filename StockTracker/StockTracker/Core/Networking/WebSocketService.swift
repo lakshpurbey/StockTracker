@@ -14,10 +14,14 @@ final class WebSocketService: WebSocketServiceProtocol {
     
     private var continuation: AsyncStream<ConnectionState>.Continuation?
     private var messageContinuation: AsyncStream<String>.Continuation?
+    
+    private var currentState: ConnectionState = .disconnected
 
     var connectionState: AsyncStream<ConnectionState> {
          AsyncStream { continuation in
              self.continuation = continuation
+             continuation.yield(self.currentState) // Immediately send the latest known state so late subscribers don’t miss it
+
          }
      }
     
@@ -31,12 +35,14 @@ final class WebSocketService: WebSocketServiceProtocol {
     func connect() {
         webSocketTask = URLSession.shared.webSocketTask(with: url)
         webSocketTask?.resume()
+        currentState = .connected
         continuation?.yield(.connected) // LIVE
         receive()
     }
     
     func disconnect() {
         webSocketTask?.cancel(with: .goingAway, reason: nil)
+        currentState = .disconnected
         continuation?.yield(.disconnected) // OFFLINE
     }
     
