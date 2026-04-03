@@ -37,18 +37,7 @@ Key Principles :
 ✅ SOLID Principles
 ✅ Reactive Data Flow using AsyncStream
 
-📁 Project Structure
-StockTrackerApp/
-├── App/
-├── Core/
-│   ├── Networking/
-│   ├── DI/
-│   └── Utilities/
-├── Domain/
-├── Data/
-├── Presentation/
-├── Resources/
-└── Tests/
+📁 Project Structure - Clean Architecture + Modular
 
 🔌 Real-Time Data Flow
 
